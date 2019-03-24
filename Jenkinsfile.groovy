@@ -10,6 +10,6 @@ node {
     }
 
     stage("Run container") {
-        sh "ssh root@IP docker run -d --name flaskex_centos7 -p 6000:4000 aliyaaa/flaskex_centos7"
+        sh "ssh root@IP docker run -d --name flaskex_centos7 -p 4400:4000 aliyaaa/flaskex_centos7"
     } 
 }
