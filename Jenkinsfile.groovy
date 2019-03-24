@@ -1,15 +1,16 @@
-node {
-    properties([parameters([string(defaultValue: '127.0.0.1', description: 'Please specify IP', name: 'IP', trim: true)])])
-    satge("Remove container") {
+
+node{
+    properties([parameters([string(defaultValue: '127.0.0.1', description: 'Please specify IP to create container', name: 'IP', trim: false)])])
+    stage("Remove container"){
         try{
-            sh "ssh root@${IP} docker rm -rf flaskex_centos7"
+            sh "ssh root@${IP} docker rm -f Flaskex"
         }
-        catch (exc){
+        catch(exc){
             sh "echo container deleted"
         }
     }
-
-    stage("Run container") {
-        sh "ssh root@IP docker run -d --name flaskex_centos7 -p 4400:4000 aliyaaa/flaskex_centos7"
-    } 
+    
+    stage("Run container"){
+        sh "ssh   root@${IP}   docker run -d --name Flaskex  -p 4400:4000 farrukhsadykov/flaskex  "
+    }
 }
